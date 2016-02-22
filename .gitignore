@@ -1,0 +1,14 @@
+/Caesium/bin/
+/Caesium/obj/
+/Caesium/Caesium.csproj.user
+
+/Caesium.Tests/bin/
+/Caesium.Tests/obj/
+/Caesium.Tests/Caesium.Tests.csproj.user
+
+/_ReSharper.Caches/
+/.vs/
+/packages/*
+
+
+
