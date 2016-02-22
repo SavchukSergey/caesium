@@ -1,17 +1,20 @@
+Write-Host $env:ProgramFiles`(x86`)
+
+
 $baseDir = resolve-path ..
 $srcPath = $baseDir;
+$solutionPath = "$baseDir\Caesium.sln";
 $buildDir = "$baseDir\build"
 $packageDir = "$buildDir\package"
 
 $buildNuGet = $true;
 $nugetPackageId = "caesium";
-$nugetVersion = "1.0";
-$nugetPrelease = "beta1"
+$nugetVersion = "1.0.2";
 $nugetSourcePath = "$buildDir\caesium.nuspec"
 $nuget = "$buildDir\nuget\nuget.exe"
 $nugetOutput = "$buildDir\output"
 
-$msbuild = "C:\Program Files (x86)\MSBuild\14.0\Bin\msbuild.exe"
+$msbuild = "${Env:ProgramFiles(x86)}\MSBuild\14.0\Bin\msbuild.exe"
 $configuration = "Release"
 
 $nugetSpec = "$packageDir\caesium.nuspec"
@@ -45,6 +48,11 @@ function Build-Project($path) {
 	& $msbuild $path /p:Configuration=$configuration
 }
 
+function Build-Solution($path) {
+	& $nuget restore $path
+	& $msbuild $path /p:Configuration=$configuration
+}
+
 function Copy-Build($projectDir)  {
 	$binSourcePath = "$projectDir\bin\$configuration";
 	$binTargetPath = "$packageDir\lib\net45"
@@ -57,10 +65,8 @@ function Copy-Build($projectDir)  {
 Delete-Folder $packageDir
 Delete-Folder $nugetOutput
 
-Write-Host "Building Caesium project"
-Build-Project "$srcPath\Caesium\Caesium.csproj"
-Write-Host "Building Caesium Tests project"
-Build-Project "$srcPath\Caesium.Tests\Caesium.Tests.csproj"
+Write-Host "Building Caesium solution"
+Build-Solution $solutionPath
 
 Write-Host "Copying bin files to package"
 Ensure-Folder $packageDir

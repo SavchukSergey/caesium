@@ -50,6 +50,30 @@ namespace Caesium.Data {
             return sb.ToString();
         }
 
+        public static string FormatText(string val) {
+            var sb = new StringBuilder();
+            foreach (var ch in val) {
+                switch (ch) {
+                    case '\\':
+                        sb.Append("\\\\");
+                        break;
+                    case ';':
+                        sb.Append("\\;");
+                        break;
+                    case ',':
+                        sb.Append("\\,");
+                        break;
+                    case '\n':
+                        sb.Append("\\n");
+                        break;
+                    default:
+                        sb.Append(ch);
+                        break;
+                }
+            }
+            return sb.ToString();
+        }
+
         private static char Unescape(char symbol) {
             switch (symbol) {
                 case '\\':
@@ -65,7 +89,6 @@ namespace Caesium.Data {
                     throw new FormatException("Invalid escape character");
             }
         }
-
 
     }
 }

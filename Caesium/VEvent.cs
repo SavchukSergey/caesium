@@ -19,9 +19,17 @@
             set { this["UID"] = value; }
         }
 
+        /// <summary>
+        /// <para>
+        /// This property is used in the "VEVENT", "VTODO", and "VJOURNAL" calendar components to capture a short, one-line summary about the activity or journal entry.
+        /// </para>
+        /// <para>
+        /// This property is used in the "VALARM" calendar component to capture the subject of an EMAIL category of alarm.
+        /// </para>
+        /// </summary>
         public string Summary {
-            get { return this["SUMMARY"]; }
-            set { this["SUMMARY"] = value; }
+            get { return GetText("SUMMARY"); }
+            set { SetText("SUMMARY", value); }
         }
 
         public string Status {
@@ -54,9 +62,20 @@
             set { this["DTSTAMP"] = value; }
         }
 
+        /// <summary>
+        ///<para>
+        ///  This property is used in the "VEVENT" and "VTODO" to capture lengthy textual descriptions associated with the activity.
+        /// </para>
+        /// <para>
+        /// This property is used in the "VJOURNAL" calendar component to capture one or more textual journal entries.
+        /// </para>
+        /// <para>
+        /// This property is used in the "VALARM" calendar component to capture the display text for a DISPLAY category of alarm, and to capture the body text for an EMAIL category of alarm.
+        /// </para>
+        /// </summary>
         public string Description {
-            get { return this["DESCRIPTION"]; }
-            set { this["DESCRIPTION"] = value; }
+            get { return GetText("DESCRIPTION"); }
+            set { SetText("DESCRIPTION", value); }
         }
 
         public string Transp {

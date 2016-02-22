@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Caesium.Data;
 
 namespace Caesium {
     public class CalendarObject {
@@ -32,6 +33,15 @@ namespace Caesium {
             }
         }
 
+        protected string GetText(string propertyName) {
+            var raw = this[propertyName];
+            return raw != null ? Value.ParseText(raw) : null;
+        }
+
+        protected void SetText(string propertyName, string value) {
+            var raw = value != null ? Value.FormatText(value) : null;
+            this[propertyName] = raw;
+        }
         public string this[string propertyName, string parameterName] {
             get {
                 var prop = FindProperty(propertyName);

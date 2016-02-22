@@ -4,24 +4,39 @@
         public VCalendar() : base("VCALENDAR") {
         }
 
+        /// <summary>
+        /// <para>
+        /// The vendor of the implementation SHOULD assure that this is a globally unique identifier; 
+        /// using some technique such as an FPI value, as defined in [ISO.9070.1991].
+        /// </para>
+        /// <para>
+        /// This property SHOULD NOT be used to alter the interpretation of an iCalendar object beyond the semantics specified in this memo.
+        /// For example, it is not to be used to further the understanding of non-standard properties.
+        /// </para>
+        /// </summary>
         public string ProdId {
-            get { return this["PRODID"]; }
-            set { this["PRODID"] = value; }
+            get { return GetText("PRODID"); }
+            set { SetText("PRODID", value); }
         }
 
         public string Version {
-            get { return this["VERSION"]; }
-            set { this["VERSION"] = value; }
+            get { return GetText("VERSION"); }
+            set { SetText("VERSION", value); }
         }
 
         public string CalScale {
-            get { return this["CALSCALE"]; }
-            set { this["CALSCALE"] = value; }
+            get { return GetText("CALSCALE"); }
+            set { SetText("CALSCALE", value); }
         }
 
         public string Method {
-            get { return this["METHOD"]; }
-            set { this["METHOD"] = value; }
+            get { return GetText("METHOD"); }
+            set { SetText("METHOD", value); }
+        }
+
+        public string XWrCalName {
+            get { return GetText("X-WR-CALNAME"); }
+            set { SetText("X-WR-CALNAME", value); }
         }
     }
 }

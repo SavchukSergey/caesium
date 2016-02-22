@@ -53,8 +53,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="USHolidays.ics" />
-    <None Include="yogam.ics" />
+    <EmbeddedResource Include="USHolidays.ics" />
+    <EmbeddedResource Include="yogam.ics" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Caesium\Caesium.csproj">
