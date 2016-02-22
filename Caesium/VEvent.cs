@@ -47,6 +47,19 @@
             set { this["CATEGORIES"] = value; }
         }
 
+        /// <summary>
+        /// <para>
+        /// Within the "VEVENT" calendar component, this property defines the start date and time for the event.
+        /// </para>
+        /// <para>
+        /// Within the "VFREEBUSY" calendar component, this property defines the start date and time for the free or busy time information.
+        /// The time MUST be specified in UTC time.
+        /// </para>
+        /// <para>
+        /// Within the "STANDARD" and "DAYLIGHT" sub-components, this property defines the effective start date and time for a time zone specification.
+        /// This property is REQUIRED within each "STANDARD" and "DAYLIGHT" sub-components included in "VTIMEZONE" calendar components and MUST be specified as a date with local time without the "TZID" property parameter.
+        /// </para>
+        /// </summary>
         public string DtStart {
             get { return this["DTSTART"]; }
             set { this["DTSTART"] = value; }

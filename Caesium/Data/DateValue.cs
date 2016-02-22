@@ -19,5 +19,15 @@ namespace Caesium.Data {
             return res;
         }
 
+        public static bool TryParse(string src, out DateValue val) {
+            try {
+                val = Parse(src);
+                return true;
+            } catch (FormatException) {
+                val = new DateValue();
+                return false;
+            }
+        }
+
     }
 }
