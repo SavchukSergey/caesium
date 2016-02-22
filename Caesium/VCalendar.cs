@@ -1,4 +1,7 @@
-﻿namespace Caesium {
+﻿using System;
+using System.Threading.Tasks;
+
+namespace Caesium {
     public class VCalendar : CalendarObject {
 
         public VCalendar() : base("VCALENDAR") {
@@ -37,6 +40,10 @@
         public string XWrCalName {
             get { return GetText("X-WR-CALNAME"); }
             set { SetText("X-WR-CALNAME", value); }
+        }
+
+        public new static async Task<VCalendar> LoadAsync(string url) {
+            return await LoadAsync<VCalendar>(url);
         }
     }
 }

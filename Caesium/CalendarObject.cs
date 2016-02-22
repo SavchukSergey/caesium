@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 using Caesium.Data;
 
 namespace Caesium {
@@ -42,6 +45,7 @@ namespace Caesium {
             var raw = value != null ? Value.FormatText(value) : null;
             this[propertyName] = raw;
         }
+
         public string this[string propertyName, string parameterName] {
             get {
                 var prop = FindProperty(propertyName);
@@ -98,6 +102,23 @@ namespace Caesium {
             }
             return obj;
 
+        }
+
+        public static async Task<CalendarObject> LoadAsync(string uri) {
+            var request = WebRequest.Create(uri);
+            using (var response = await request.GetResponseAsync()) {
+                var stream = response.GetResponseStream();
+                if (stream == null) throw new Exception("Content not found");
+                using (stream) {
+                    var content = await new StreamReader(stream).ReadToEndAsync();
+                    return Parse(content);
+                }
+            }
+        }
+
+        public static async Task<T> LoadAsync<T>(string uri) where T : CalendarObject {
+            var obj = await LoadAsync(uri);
+            return (T)obj;
         }
 
         private CalendarProperty FindProperty(string key) {

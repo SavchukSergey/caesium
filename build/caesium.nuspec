@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>caesium</id>
+    <id>Caesium</id>
     <version>1.0.0</version>
 	<title>Caesium</title>
     <description>Caesium is a tool for parsing ICS files</description>

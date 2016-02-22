@@ -1,6 +1,3 @@
-Write-Host $env:ProgramFiles`(x86`)
-
-
 $baseDir = resolve-path ..
 $srcPath = $baseDir;
 $solutionPath = "$baseDir\Caesium.sln";
@@ -8,8 +5,8 @@ $buildDir = "$baseDir\build"
 $packageDir = "$buildDir\package"
 
 $buildNuGet = $true;
-$nugetPackageId = "caesium";
-$nugetVersion = "1.0.2";
+$nugetPackageId = "Caesium";
+$nugetVersion = "1.0.3";
 $nugetSourcePath = "$buildDir\caesium.nuspec"
 $nuget = "$buildDir\nuget\nuget.exe"
 $nugetOutput = "$buildDir\output"
