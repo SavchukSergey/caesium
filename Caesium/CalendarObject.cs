@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Caesium.Data;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
-using Caesium.Data;
 
 namespace Caesium {
     public class CalendarObject {
@@ -105,11 +105,9 @@ namespace Caesium {
         }
 
         public static async Task<CalendarObject> LoadAsync(string uri) {
-            var request = WebRequest.Create(uri);
-            using (var response = await request.GetResponseAsync()) {
-                var stream = response.GetResponseStream();
-                if (stream == null) throw new Exception("Content not found");
-                using (stream) {
+            using (var request = new HttpClient()) {
+                using (var stream = await request.GetStreamAsync(uri)) {
+                    if (stream == null) throw new Exception("Content not found");
                     var content = await new StreamReader(stream).ReadToEndAsync();
                     return Parse(content);
                 }
