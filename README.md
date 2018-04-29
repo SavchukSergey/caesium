@@ -13,5 +13,5 @@ var calendar = (VCalendar)CalendarObject.Parse(content)
 Load calendar from uri:
 
 `
-var calendar = VCalendar.Load(uri)
+var calendar = await VCalendar.LoadAsync(uri);
 `

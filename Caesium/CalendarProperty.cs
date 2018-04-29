@@ -104,7 +104,7 @@ namespace Caesium {
                     return sb.ToString();
                 }
             }
-            throw new Exception("Unexpected end of NAME");
+            return sb.ToString();
         }
 
     }

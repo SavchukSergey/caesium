@@ -1,6 +1,7 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using System.IO;
-using NUnit.Framework;
+using System.Threading.Tasks;
 
 namespace Caesium.Tests {
     [TestFixture]
@@ -16,6 +17,12 @@ namespace Caesium.Tests {
         public void ParseYogamTest() {
             var content = ReadResource("yogam.ics");
             var calendar = (VCalendar)CalendarObject.Parse(content);
+        }
+
+        [Test]
+        public async Task ParseWPEventsCalendar() {
+            // Modern Tribe's Demo Site (creators of popular WordPress calendar plugin)
+            var calendar = await CalendarObject.LoadAsync("https://wpshindig.com/?ical=1");
         }
 
         private string ReadResource(string name) {
