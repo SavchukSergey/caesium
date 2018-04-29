@@ -6,6 +6,7 @@
      <Authors>Sergey Savchuk</Authors>
      <RepositoryUrl>https://github.com/SavchukSergey/caesium</RepositoryUrl>
      <PackageTags>ICS, Calendar</PackageTags>
+     <Version>1.0.4</Version>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.Net.Http" />
