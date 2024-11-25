@@ -35,7 +35,7 @@ namespace Caesium {
             return res;
         }
 
-        private static IList<string> ParseParamValues(CalendarReader reader) {
+        private static List<string> ParseParamValues(CalendarReader reader) {
             var res = new List<string>();
             do {
                 var val = ParseParamValue(reader);
@@ -57,7 +57,7 @@ namespace Caesium {
                     return sb?.ToString();
                 }
                 ch = reader.ReadChar();
-                if (sb == null) sb = new StringBuilder();
+                sb ??= new StringBuilder();
                 sb.Append(ch);
             }
             return sb?.ToString();

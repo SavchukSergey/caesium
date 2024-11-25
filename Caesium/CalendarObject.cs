@@ -15,9 +15,9 @@ namespace Caesium {
 
         public string Type { get; }
 
-        public IList<CalendarObject> Children { get; } = new List<CalendarObject>();
+        public IList<CalendarObject> Children { get; } = [];
 
-        public IList<CalendarProperty> Properties { get; } = new List<CalendarProperty>();
+        public IList<CalendarProperty> Properties { get; } = [];
 
         public string this[string propertyName] {
             get {
@@ -64,14 +64,14 @@ namespace Caesium {
         }
 
         public static CalendarObject CreateObject(string type) {
-            switch (type) {
-                case "VCALENDAR": return new VCalendar();
-                case "VEVENT": return new VEvent();
-                case "VTIMEZONE": return new VTimeZone();
-                case "DAYLIGHT": return new DayLight();
-                case "STANDARD": return new Standard();
-                default: return new CalendarObject(type);
-            }
+            return type switch {
+                "VCALENDAR" => new VCalendar(),
+                "VEVENT" => new VEvent(),
+                "VTIMEZONE" => new VTimeZone(),
+                "DAYLIGHT" => new DayLight(),
+                "STANDARD" => new Standard(),
+                _ => new CalendarObject(type),
+            };
         }
 
         public static CalendarObject Parse(string val) {
@@ -105,13 +105,9 @@ namespace Caesium {
         }
 
         public static async Task<CalendarObject> LoadAsync(string uri) {
-            using (var request = new HttpClient()) {
-                using (var stream = await request.GetStreamAsync(uri)) {
-                    if (stream == null) throw new Exception("Content not found");
-                    var content = await new StreamReader(stream).ReadToEndAsync();
-                    return Parse(content);
-                }
-            }
+            using var stream = await _client.GetStreamAsync(uri) ?? throw new Exception("Content not found");
+            var content = await new StreamReader(stream).ReadToEndAsync();
+            return Parse(content);
         }
 
         public static async Task<T> LoadAsync<T>(string uri) where T : CalendarObject {
@@ -123,6 +119,8 @@ namespace Caesium {
             key = key.ToUpperInvariant();
             return Properties.FirstOrDefault(item => item.NameUpper == key);
         }
+
+        private static readonly HttpClient _client = new();
 
     }
 }

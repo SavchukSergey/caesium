@@ -14,24 +14,20 @@ namespace Caesium.Data {
 
         public static UtcOffsetValue Parse(string val) {
             if (val.Length != 5 && val.Length != 7) throw new Exception("Invalid UtcOffset value");
-            var res = new UtcOffsetValue();
-            switch (val[0]) {
-                case '+':
-                    res.Negative = false;
-                    break;
-                case '-':
-                    res.Negative = true;
-                    break;
-                default:
-                    throw new Exception("+ or - expected");
-            }
-            res.Hours = ParsePart(val, 1);
-            res.Minutes = ParsePart(val, 3);
+            var res = new UtcOffsetValue {
+                Negative = val[0] switch {
+                    '+' => false,
+                    '-' => true,
+                    _ => throw new Exception("+ or - expected"),
+                },
+                Hours = ParsePart(val, 1),
+                Minutes = ParsePart(val, 3)
+            };
             if (val.Length == 7) res.Seconds = ParsePart(val, 5);
             return res;
         }
 
-        public override string ToString() {
+        public override readonly string ToString() {
             var sb = new StringBuilder();
             sb.Append(Negative ? '-' : '+');
             sb.Append(Hours.ToString("D2"));

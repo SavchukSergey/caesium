@@ -5,12 +5,11 @@ namespace Caesium.Data {
     public static class Value {
 
         public static bool ParseBoolean(string val) {
-            switch (val.ToUpperInvariant()) {
-                case "TRUE": return true;
-                case "FALSE": return false;
-                default:
-                    throw new FormatException("Invalid bool value");
-            }
+            return val.ToUpperInvariant() switch {
+                "TRUE" => true,
+                "FALSE" => false,
+                _ => throw new FormatException("Invalid bool value"),
+            };
         }
 
         public static int ParseTwoDigitInteger(string val, int index) {
@@ -75,19 +74,13 @@ namespace Caesium.Data {
         }
 
         private static char Unescape(char symbol) {
-            switch (symbol) {
-                case '\\':
-                    return '\\';
-                case ';':
-                    return ';';
-                case ',':
-                    return ',';
-                case 'N':
-                case 'n':
-                    return '\n';
-                default:
-                    throw new FormatException("Invalid escape character");
-            }
+            return symbol switch {
+                '\\' => '\\',
+                ';' => ';',
+                ',' => ',',
+                'N' or 'n' => '\n',
+                _ => throw new FormatException("Invalid escape character"),
+            };
         }
 
     }

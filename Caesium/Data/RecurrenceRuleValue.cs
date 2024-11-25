@@ -100,17 +100,16 @@ namespace Caesium.Data {
         }
 
         private static RecurrenceFrequency ParseFrequency(string freq) {
-            switch (freq) {
-                case "YEARLY": return RecurrenceFrequency.Yearly;
-                case "MONTHLY": return RecurrenceFrequency.Monthly;
-                case "WEEKLY": return RecurrenceFrequency.Weekly;
-                case "DAILY": return RecurrenceFrequency.Daily;
-                case "HOURLY": return RecurrenceFrequency.Hourly;
-                case "MINUTELY": return RecurrenceFrequency.Minutely;
-                case "SECONDLY": return RecurrenceFrequency.Secondly;
-                default:
-                    throw new ArgumentException("Unknown frequency type");
-            }
+            return freq switch {
+                "YEARLY" => RecurrenceFrequency.Yearly,
+                "MONTHLY" => RecurrenceFrequency.Monthly,
+                "WEEKLY" => RecurrenceFrequency.Weekly,
+                "DAILY" => RecurrenceFrequency.Daily,
+                "HOURLY" => RecurrenceFrequency.Hourly,
+                "MINUTELY" => RecurrenceFrequency.Minutely,
+                "SECONDLY" => RecurrenceFrequency.Secondly,
+                _ => throw new ArgumentException("Unknown frequency type"),
+            };
         }
 
 

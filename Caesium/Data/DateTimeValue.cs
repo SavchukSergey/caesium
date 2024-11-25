@@ -17,7 +17,7 @@ namespace Caesium.Data {
 
         public bool Utc { get; set; }
 
-        public TimeSpan TimeOfDay => new TimeSpan(Hours, Minutes, Seconds);
+        public readonly TimeSpan TimeOfDay => new(Hours, Minutes, Seconds);
 
         public static DateTimeValue Parse(string src) {
             if (src.Length != 15 && src.Length != 16) throw new FormatException();

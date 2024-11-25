@@ -12,13 +12,13 @@ namespace Caesium.Tests.Data {
         public void ParseTest(string val, char sign, int hours, int minutes, int? seconds) {
             var offset = UtcOffsetValue.Parse(val);
             if (sign == '+') {
-                Assert.IsFalse(offset.Negative);
+                Assert.That(offset.Negative, Is.False);
             } else {
-                Assert.IsTrue(offset.Negative);
+                Assert.That(offset.Negative, Is.True);
             }
-            Assert.AreEqual(hours, offset.Hours);
-            Assert.AreEqual(minutes, offset.Minutes);
-            Assert.AreEqual(seconds, offset.Seconds);
+            Assert.That(offset.Hours, Is.EqualTo(hours));
+            Assert.That(offset.Minutes, Is.EqualTo(minutes));
+            Assert.That(offset.Seconds, Is.EqualTo(seconds));
         }
     }
 }

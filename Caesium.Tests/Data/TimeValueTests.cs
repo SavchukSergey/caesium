@@ -9,10 +9,10 @@ namespace Caesium.Tests.Data {
         [TestCase("021545Z", 2, 15, 45, true)]
         public void ParseTest(string val, int hours, int minutes, int seconds, bool utc) {
             var offset = TimeValue.Parse(val);
-            Assert.AreEqual(hours, offset.Hours);
-            Assert.AreEqual(minutes, offset.Minutes);
-            Assert.AreEqual(seconds, offset.Seconds);
-            Assert.AreEqual(utc, offset.Utc);
+            Assert.That(offset.Hours, Is.EqualTo(hours));
+            Assert.That(offset.Minutes, Is.EqualTo(minutes));
+            Assert.That(offset.Seconds, Is.EqualTo(seconds));
+            Assert.That(offset.Utc, Is.EqualTo(utc));
         }
     }
 }

@@ -31,16 +31,16 @@ namespace Caesium.Data {
 
         private static DayOfWeek ParseDayOfWeek(string val) {
             val = val.ToUpperInvariant();
-            switch (val) {
-                case "SU": return DayOfWeek.Sunday;
-                case "MO": return DayOfWeek.Monday;
-                case "TU": return DayOfWeek.Tuesday;
-                case "WE": return DayOfWeek.Wednesday;
-                case "TH": return DayOfWeek.Thursday;
-                case "FR": return DayOfWeek.Friday;
-                case "SA": return DayOfWeek.Saturday;
-                default: throw new Exception("Unknown day of week " + val);
-            }
+            return val switch {
+                "SU" => DayOfWeek.Sunday,
+                "MO" => DayOfWeek.Monday,
+                "TU" => DayOfWeek.Tuesday,
+                "WE" => DayOfWeek.Wednesday,
+                "TH" => DayOfWeek.Thursday,
+                "FR" => DayOfWeek.Friday,
+                "SA" => DayOfWeek.Saturday,
+                _ => throw new Exception("Unknown day of week " + val),
+            };
         }
 
         public static implicit operator WeekDayNum(string val) {

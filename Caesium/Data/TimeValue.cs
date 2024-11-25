@@ -26,7 +26,7 @@ namespace Caesium.Data {
             return res;
         }
 
-        public override string ToString() {
+        public override readonly string ToString() {
             var sb = new StringBuilder();
             sb.Append(Hours.ToString("D2"));
             sb.Append(Minutes.ToString("D2"));

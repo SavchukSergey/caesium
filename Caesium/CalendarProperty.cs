@@ -37,7 +37,7 @@ namespace Caesium {
         }
 
         private CalendarPropertyParameter FindParameter(string paramName) {
-            if (paramName == null) throw new ArgumentNullException(nameof(paramName));
+            ArgumentNullException.ThrowIfNull(paramName);
             paramName = paramName.ToLowerInvariant();
             return Parameters?.FirstOrDefault(item => item.Name?.ToLowerInvariant() == paramName);
         }
@@ -57,7 +57,7 @@ namespace Caesium {
 
             while (reader.PeekOrRead(';')) {
                 var param = CalendarPropertyParameter.ReadFrom(reader);
-                if (line.Parameters == null) line.Parameters = new List<CalendarPropertyParameter>();
+                line.Parameters ??= [];
                 line.Parameters.Add(param);
             }
             reader.ReadChar(':');

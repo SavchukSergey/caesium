@@ -1,15 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-     <TargetFrameworks>net452;netcoreapp1.0;netstandard1.1</TargetFrameworks>
+     <TargetFrameworks>net8.0</TargetFrameworks>
      <PackageId>Caesium</PackageId>
      <Description>Caesium is a tool for parsing ICS files</Description>
      <Authors>Sergey Savchuk</Authors>
      <RepositoryUrl>https://github.com/SavchukSergey/caesium</RepositoryUrl>
      <PackageTags>ICS, Calendar</PackageTags>
-     <Version>1.0.5</Version>
+     <Version>1.0.6</Version>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System.Net.Http" />
-  </ItemGroup>
 </Project>
